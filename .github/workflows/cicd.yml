@@ -2,7 +2,7 @@ name: 3-tier pipeline
 on:
   push:
     branches:
-      - qa
+      - main
     paths:
       - client/**
       - server/**
