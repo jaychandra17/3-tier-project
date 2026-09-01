@@ -121,7 +121,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Setup Trivy
-        uses: aquasecurity/setup-trivy@v0.2.0
+        uses: aquasecurity/setup-trivy@v0.1.0
         with:
           version: v0.74.0
           cache: true
@@ -147,7 +147,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Setup Trivy
-        uses: aquasecurity/setup-trivy@v0.2.0
+        uses: aquasecurity/setup-trivy@v0.1.0
         with:
           version: v0.74.0
       - name: Run Trivy-FS-scan Server
