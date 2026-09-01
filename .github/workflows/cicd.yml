@@ -113,6 +113,57 @@ jobs:
           name: checkov-k8s-report
           path: checkov-k8s-report.json
 
+  trivy-fs-scan-client:
+    name: Trivy-FS-scan Client
+    runs-on: ubuntu-latest
+    needs: scan
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup Trivy
+        uses: aquasecurity/trivy-action@v0.9.0
+        with:
+          version: '0.44.0'
+      - name: Run Trivy-FS-scan Client
+        run: |
+          trivy fs ./client --quiet \
+          --format table \
+          --severity HIGH,CRITICAL \
+          --ignore-unfixed \
+          --output trivy-fs-client-report.txt \
+          --exit-code 0
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: trivy-fs-client-report
+          path: trivy-fs-client-report.txt
+          
+  trivy-fs-scan-server:
+    name: Trivy-FS-scan Server
+    runs-on: ubuntu-latest
+    needs: scan
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup Trivy
+        uses: aquasecurity/trivy-action@v0.9.0
+        with:
+          version: '0.44.0'
+      - name: Run Trivy-FS-scan Server
+        run: |
+          trivy fs ./server --quiet \
+          --format table \
+          --severity HIGH,CRITICAL \
+          --ignore-unfixed \
+          --output trivy-fs-server-report.txt \
+          --exit-code 0
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: trivy-fs-server-report
+          path: trivy-fs-server-report.txt
+
+
   
 
 
