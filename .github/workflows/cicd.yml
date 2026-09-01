@@ -76,7 +76,7 @@ jobs:
         run: |
           checkov -d . \
           --quiet \
-          --framework docker \
+          --framework dockerfile \
           --output json \
           --output-file-path checkov-docker-report.json \
           --soft-fail
